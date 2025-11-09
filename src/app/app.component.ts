@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularnvmbr';
+  isMenuOpen=false;
+  toggleMenu(){
+    this.isMenuOpen=! this.isMenuOpen;
+  }
 }
