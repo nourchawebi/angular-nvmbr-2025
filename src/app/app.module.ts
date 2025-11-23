@@ -11,7 +11,28 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ModalComponent } from './modal/modal.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { AjoutproduitComponent } from './pages/ajoutproduit/ajoutproduit.component';
+import { ProduitsComponent } from './pages/produits/produits.component';
+import { DetailsproduitComponent } from './pages/detailsproduit/detailsproduit.component';
+import { ModifierproduitComponent } from './pages/modifierproduit/modifierproduit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -23,14 +44,36 @@ import {FormsModule} from "@angular/forms";
     LoginComponent,
     UsersComponent,
     ProductsComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ModalComponent,
+    AjoutproduitComponent,
+    ProduitsComponent,
+    DetailsproduitComponent,
+    ModifierproduitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatTableModule,
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
