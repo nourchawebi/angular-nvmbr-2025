@@ -11,16 +11,24 @@ import {ModalComponent} from "./modal/modal.component";
 import {AjoutproduitComponent} from "./pages/ajoutproduit/ajoutproduit.component";
 import {ProduitsComponent} from "./pages/produits/produits.component";
 
+import {DetailsproduitsComponent} from "./pages/detailsproduits/detailsproduits.component";
+import {AdminComponent} from "./pages/admin/admin.component";
+import {UnauthorizedComponent} from "./pages/unauthorized/unauthorized.component";
+import {authGuard, authGuardadmin} from "./services/auth.guard";
+
 const routes: Routes = [
-  {path:'acceuil',component:HeaderfooterComponent,
+  {path:'acceuil',component:HeaderfooterComponent,canActivate:[authGuard],
   children:[{path:'', component: HomeComponent},
-    {path:'users', component: UsersComponent},
-    {path:'products', component:ProductsComponent},
-    {path:'ajoutproduit', component:AjoutproduitComponent},
-    {path:'produits', component:ProduitsComponent}
+    {path:'users', component: UsersComponent,canActivate:[authGuard]},
+    {path:'products', component:ProductsComponent,canActivate:[authGuard]},
+    {path:'ajoutproduit', component:AjoutproduitComponent,canActivate:[authGuard]},
+    {path:'produits', component:ProduitsComponent,canActivate:[authGuard]},
+    {path:'produit/:id', component:DetailsproduitsComponent,canActivate:[authGuard]}
   ]
   },
+  {path:'admin', component:AdminComponent,canActivate:[authGuardadmin]},
   {path:'login', component:LoginComponent},
+  {path:'unauthorized', component:UnauthorizedComponent},
   {path:'modal', component: ModalComponent},
   {path:'', redirectTo:'acceuil', pathMatch:'full'},
   {path:'notfound', component: NotfoundComponent},

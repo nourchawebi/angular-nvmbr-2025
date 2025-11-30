@@ -16,7 +16,7 @@ import { ModalComponent } from './modal/modal.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { AjoutproduitComponent } from './pages/ajoutproduit/ajoutproduit.component';
 import { ProduitsComponent } from './pages/produits/produits.component';
-import { DetailsproduitComponent } from './pages/detailsproduit/detailsproduit.component';
+
 import { ModifierproduitComponent } from './pages/modifierproduit/modifierproduit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -33,6 +33,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from "@angular/material/table";
+import { DetailsproduitsComponent } from './pages/detailsproduits/detailsproduits.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -48,8 +52,10 @@ import {MatTableModule} from "@angular/material/table";
     ModalComponent,
     AjoutproduitComponent,
     ProduitsComponent,
-    DetailsproduitComponent,
-    ModifierproduitComponent
+    ModifierproduitComponent,
+    DetailsproduitsComponent,
+    AdminComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +78,7 @@ import {MatTableModule} from "@angular/material/table";
     MatPaginatorModule,
     MatDialogModule,
     MatTableModule,
+    NgChartsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

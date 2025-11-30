@@ -1,4 +1,4 @@
-<br><br><br><br><br><br><br>
+
 <header>
   <h1> Produit</h1>
   <nav>
@@ -9,7 +9,6 @@
 <br>
 <div >
 
-  <br><br>
 <div class="input-block select-form mb-1">
   <div class="input-block select-form mb-1">
     <select class="form-select select" [(ngModel)]="selecteetat" (change)="filtredproducts()" >
@@ -38,7 +37,7 @@
 
             <div class="blog grid-modern" >
               <div class="blog-image">
-                <a >
+                <a [routerLink]="['/acceuil/produit', u.idProduit]">
                   <img class="img-fluid responsive-image" [src]="'http://localhost:8082/image/'+u.picture" alt >
                 </a>
               </div>
@@ -52,9 +51,9 @@
                     </ul>
                   </div>
                 </div>
-                <button mat-raised-button color="warn" >Supprimer</button>
+                <button mat-raised-button color="warn" (click)="OndeleteProduct(u.idProduit)" >Supprimer</button>
 
-                <button mat-raised-button color="primary"  >Modifier</button>
+                <button mat-raised-button color="primary"   (click)="openDialog(u)">Modifier</button>
               </div></div></div>
         </div></div></div>
 

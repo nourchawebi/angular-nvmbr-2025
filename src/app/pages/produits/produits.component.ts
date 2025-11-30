@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ProduitsService} from "../../services/produits.service";
 import {PageEvent} from "@angular/material/paginator";
 import {filter} from "rxjs";
+import Swal from "sweetalert2";
+import {MatDialog} from "@angular/material/dialog";
+import {ModifierproduitComponent} from "../modifierproduit/modifierproduit.component";
 
 @Component({
   selector: 'app-produits',
@@ -9,7 +12,7 @@ import {filter} from "rxjs";
   styleUrls: ['./produits.component.css']
 })
 export class ProduitsComponent implements OnInit{
-  constructor(private productService:ProduitsService) {
+  constructor(private productService:ProduitsService, public dialog:MatDialog) {
   }
   message:string='';
   produits:any=[];
@@ -65,5 +68,52 @@ export class ProduitsComponent implements OnInit{
         this.filtredproduit=this.filter||this.produits;
       }
     this.paginatedProducts();
+  }
+  OndeleteProduct(id:number|undefined){
+      if(id!=null){
+        Swal.fire({
+          title:'étes-vous sur?',
+          text:'Vous ne pourrez pas revenir en arrière!',
+          icon: 'warning',
+          showCancelButton:true,
+          cancelButtonColor:'#3085d6',
+          confirmButtonColor:'#d33',
+          confirmButtonText:'Oui, supprimez-le!'
+        }).then((result)=>{
+          if(result.isConfirmed){
+            this.productService.deleteProduit(id).subscribe(
+              data =>{
+                Swal.fire('Supprimé', 'Votre produit aa été supprimé','success');
+                this.getProducts();
+              }
+            )
+          }
+        })
+      }
+  }
+  selectedProduit:any;
+  openDialog(produit:any){
+      this.selectedProduit=produit;
+      const dialogRef= this.dialog.open(
+        ModifierproduitComponent,
+        {
+          width:'auto',
+          data:{
+            produit:this.selectedProduit
+          }
+        }  );
+        dialogRef.componentInstance.update.subscribe(
+          (updateproduit:any)=>{
+            const index=this.produits.findIndex((item:any)=>item.idProduit===updateproduit.idProduit);
+            if(index!=-1){
+              this.produits[index].libelle=updateproduit.libelle;
+              this.produits[index].description=updateproduit.description;
+              this.produits[index].marque=updateproduit.marque;
+              this.filtredproduit=this.produits;
+            }
+          }
+
+      )
+
   }
 }
